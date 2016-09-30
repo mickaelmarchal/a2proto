@@ -7,13 +7,13 @@ import { HttpModule } from '@angular/http';
 import { XHRBackend } from '@angular/http';
 
 import { InMemoryBackendService, SEED_DATA } from 'angular2-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
+import { InMemoryDataService } from './app/in-memory-data.service';
 
-import './rxjs-extensions';
-import { AppComponent } from './app.component';
+import './app/rxjs-extensions';
+import { AppComponent } from './app/app.component';
 import { routing, routedComponents } from './app.routing';
-import { HeroService } from './hero.service';
-import { HeroSearchComponent } from './hero-search.component';
+import { HeroService } from './app/heroes/hero.service';
+import { HeroSearchComponent } from './app/heroes/hero-search/hero-search.component';
 
 @NgModule({
   imports: [

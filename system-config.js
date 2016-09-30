@@ -3,8 +3,8 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 var map = {
-    'app': 'app',
-    'main': 'app/main.js',
+    'app': 'src',
+    'main': 'src/main.js',
     '@angular': 'node_modules/@angular',
     'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
     'rxjs': 'node_modules/rxjs'
@@ -19,9 +19,9 @@ var packages = {
 };
 var barrels = [
     // App specific barrels.
-    'app/routing',
-    'app/shared',
-    'app/models',
+    'src/app/routing',
+    'src/app/shared',
+    'src/app/models',
 ];
 barrels.forEach(function (barrelName) {
     packages[barrelName] = { main: 'index' };
