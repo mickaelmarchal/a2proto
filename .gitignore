@@ -1,6 +1,16 @@
-typings
+# Build artifacts
 src/**/*.js
 src/**/*.map
+
+typings
 node_modules
 jspm_packages
 bower_components
+
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE-specific config files
+.idea/
