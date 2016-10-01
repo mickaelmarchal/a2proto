@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 // Imports for loading & configuring the in-memory web api
@@ -14,18 +14,25 @@ import { AppComponent } from './app/app.component';
 import { routing, routedComponents } from './app.routing';
 import { HeroService } from './app/heroes/hero.service';
 import { HeroSearchComponent } from './app/heroes/hero-search/hero-search.component';
+import { HighlightDirective } from './app/heroes/highlight.directive';
+
+import { HeroEditComponent } from './app/heroes/hero-edit/hero-edit.component';
+
 
 @NgModule({
-  imports: [
+  imports: [          /** things that we need to build this module */
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     routing,
     HttpModule
   ],
-  declarations: [
+  declarations: [     /** things that are created in this module */
     AppComponent,
     HeroSearchComponent,
-    routedComponents
+    routedComponents,
+    HighlightDirective,
+    HeroEditComponent,
   ],
   providers: [
     HeroService,

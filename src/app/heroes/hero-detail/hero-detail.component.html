@@ -1,7 +1,11 @@
 <div *ngIf="hero">
-  <h2>{{hero.name}} details!</h2>
+  <h2 highlight>{{hero.name}} details!</h2>
   <div>
-    <label>id: </label>{{hero.id}}</div>
+    <label>id: </label>{{hero.id}}
+  </div>
+
+  <hero-edit></hero-edit>
+
   <div>
     <label>name: </label>
     <input [(ngModel)]="hero.name" placeholder="name" />

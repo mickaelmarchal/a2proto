@@ -1,5 +1,11 @@
 export class Hero {
-  id: number;
-  name: string;
-  age: number;
+
+  constructor(
+    public id: number,
+    public name: string,
+    public age: number,
+    public power: string,
+    public alterEgo ?: string
+  ) { }
+
 }
