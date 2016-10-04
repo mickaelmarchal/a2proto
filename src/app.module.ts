@@ -18,6 +18,9 @@ import { HighlightDirective } from './app/heroes/highlight.directive';
 
 import { HeroEditComponent } from './app/heroes/hero-edit/hero-edit.component';
 
+import { DynamicFormComponent } from './app/dynamic-form/dynamic-form.component';
+import { DynamicFormQuestionComponent } from './app/dynamic-form/dynamic-form-question.component';
+
 
 @NgModule({
   imports: [          /** things that we need to build this module */
@@ -33,7 +36,9 @@ import { HeroEditComponent } from './app/heroes/hero-edit/hero-edit.component';
     routedComponents,
     HighlightDirective,
     HeroEditComponent,
-  ],
+    DynamicFormComponent,
+    DynamicFormQuestionComponent
+],
   providers: [
     HeroService,
     { provide: XHRBackend, useClass: InMemoryBackendService }, // in-mem server
