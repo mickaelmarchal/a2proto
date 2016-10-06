@@ -9,8 +9,7 @@ import { QuestionService } from './question.service';
       <h2>Job Application for Heroes</h2>
       <dynamic-form [questions]="questions"></dynamic-form>
     </div>
-  `,
-    providers:  [QuestionService]
+  `
 })
 export class DynamicFormExampleComponent {
     questions: any[];

@@ -1,10 +1,8 @@
+import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DashboardComponent } from './app/dashboard/dashboard.component';
-import { HeroesComponent } from './app/heroes/heroes.component';
-import { HeroDetailComponent } from './app/heroes/hero-detail/hero-detail.component';
-import { DemoFormComponent } from './app/demo-form/demo-form.component';
-import { DynamicFormExampleComponent }         from './app/dynamic-form/dynamic-form-example.component';
+import { HeroesComponent } from './app/hero/heroes.component';
+import { HeroDetailComponent } from './app/hero/hero-detail/hero-detail.component';
 
 
 const appRoutes: Routes = [
@@ -13,10 +11,7 @@ const appRoutes: Routes = [
     redirectTo: '/dashboard',
     pathMatch: 'full'
   },
-  {
-    path: 'dashboard',
-    component: DashboardComponent
-  },
+
   {
     path: 'detail/:id',
     component: HeroDetailComponent
@@ -24,19 +19,11 @@ const appRoutes: Routes = [
   {
     path: 'heroes',
     component: HeroesComponent
-  },
-
-  {
-    path: 'demo-form',
-    component: DemoFormComponent
-  },
-
-  {
-    path: 'dynamic-form',
-    component: DynamicFormExampleComponent
   }
+
+  //note: /dynamic-form is in own router
 ];
 
-export const routing = RouterModule.forRoot(appRoutes);
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
 
-export const routedComponents = [DashboardComponent, HeroesComponent, HeroDetailComponent, DemoFormComponent, DynamicFormExampleComponent];
+export const routedComponents = [HeroesComponent, HeroDetailComponent];
