@@ -11,28 +11,31 @@ import { InMemoryDataService } from './app/in-memory-data.service';
 import './app/rxjs-extensions';
 
 import { AppComponent } from './app/app.component';
-import { routing } from './app.routing';
+
+/* Routing Module */
+import { AppRoutingModule } from './app-routing.module';
 
 
 // feature modules
+import { CoreModule } from './app/core/core.module';
 import { DashboardModule } from './app/dashboard/dashboard.module';
 import { HeroModule } from './app/hero/hero.module';
 import { DynamicFormModule } from './app/dynamic-form/dynamic-form.module';
-import { DemoFormModule } from './app/demo-form/demo-form.module';
-
+import { ContactModule }    from './app/contact/contact.module';
 
 
 @NgModule({
   imports: [          /** things that we need to build this module */
     BrowserModule,
     HttpModule,
+    CoreModule.forRoot({userName: 'Miss Marple'}),
 
     DashboardModule,
     HeroModule,
     DynamicFormModule,
-    DemoFormModule,
+    ContactModule,
 
-    routing,
+    AppRoutingModule,
   ],
   declarations: [     /** things that are created in this module */
     AppComponent

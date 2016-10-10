@@ -4,9 +4,11 @@ import { Component } from '@angular/core';
   moduleId: module.id,
   selector: 'my-app',
   template: `
-    <h1>{{title}}</h1>
+    <app-title [subtitle]="title"></app-title>
     <nav>
       <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/contact" routerLinkActive="active">Contacts</a>
+      <a routerLink="/crisis" routerLinkActive="active">Crisis</a>
       <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
       <a routerLink="/demo-form" routerLinkActive="active">Demo form</a>
       <a routerLink="/dynamic-form" routerLinkActive="active">Dynamic form</a>

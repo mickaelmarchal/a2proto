@@ -1,12 +1,8 @@
 
 import { NgModule }           from '@angular/core';
 
-// required for non-root module
-import { CommonModule }       from '@angular/common';
 
-// necessary for current module
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import {SharedModule} from "../shared/shared.module";
 
 import { DynamicFormExampleComponent }         from './dynamic-form-example.component';
 import { DynamicFormComponent } from './dynamic-form.component';
@@ -18,9 +14,7 @@ import { routing } from './dynamic-form.routing';
 
 @NgModule({
     imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
+        SharedModule,
         routing
     ],
     declarations: [

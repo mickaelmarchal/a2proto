@@ -1,22 +1,18 @@
 
 import { NgModule }           from '@angular/core';
 
-// required for non-root module
-import { CommonModule }       from '@angular/common';
-
-// necessary for current module
-import { ReactiveFormsModule } from '@angular/forms';
+import {SharedModule} from "../shared/shared.module";
 
 import { DemoFormComponent } from './demo-form.component';
 
 // routing for module is here
-import { routing } from './demo-form.routing';
+import { DemoFormRoutingModule }    from './demo-form-routing.module';
+
 
 @NgModule({
     imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        routing
+        SharedModule,
+        DemoFormRoutingModule
     ],
     declarations: [
         DemoFormComponent
