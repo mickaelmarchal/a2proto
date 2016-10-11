@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute }    from '@angular/router';
+import { ActivatedRoute, Params }    from '@angular/router';
 
 @Component({
   template: `
@@ -14,13 +14,8 @@ export class CrisisDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute) {  }
 
   ngOnInit() {
-    this.id = parseInt(this.route.snapshot.params['id'], 10);
+    this.route.params.forEach((params: Params) => {
+      this.id = +params['id'];
+    });
   }
 }
-
-
-/*
-Copyright 2016 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/

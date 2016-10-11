@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Hero } from '../hero';
 import { HeroService } from '../../core/hero.service';
@@ -13,11 +13,13 @@ import { HeroService } from '../../core/hero.service';
 export class HeroListComponent implements OnInit {
   heroes: Hero[];
   selectedHero: Hero;
+  selectedId: number;
   addingHero = false;
   error: any;
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private heroService: HeroService) { }
 
   getHeroes(): void {
@@ -49,12 +51,21 @@ export class HeroListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getHeroes();
+    //the forEach allows listening to all changes in the params (which is an observable)
+    this.route.params.forEach((params: Params) => {
+      this.selectedId = +params['id'];
+      this.getHeroes();
+    });
   }
 
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
+    this.selectedId = hero.id;
     this.addingHero = false;
+  }
+
+  isSelected(hero: Hero) {
+    return hero.id === this.selectedId;
   }
 
   gotoDetail(): void {

@@ -6,8 +6,10 @@ import { Crisis,
 @Component({
   template: `
     <h3 highlight>Crisis List</h3>
+    <router-outlet></router-outlet>
+
     <div *ngFor='let crisis of crisises | async'>
-      <a routerLink="{{'../' + crisis.id}}">{{crisis.id}} - {{crisis.name}}</a>
+      <a routerLink="{{crisis.id}}">{{crisis.id}} - {{crisis.name}}</a>
     </div>
   `
 })
