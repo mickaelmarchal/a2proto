@@ -12,6 +12,7 @@ import { Component } from '@angular/core';
       <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
       <a routerLink="/demo-form" routerLinkActive="active">Demo form</a>
       <a routerLink="/dynamic-form" routerLinkActive="active">Dynamic form</a>
+      <a routerLink="/admin" routerLinkActive="active">Admin</a>
     </nav>
     <router-outlet></router-outlet>
   `,
