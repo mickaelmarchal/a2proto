@@ -13,6 +13,7 @@ import {HeroSearchService} from "./hero-search/hero-search.service";
 
 // routing for module is here
 import { routing } from './hero.routing';
+import {HeroDetailResolve} from "./hero-detail/hero-detail-resolve.service";
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { routing } from './hero.routing';
         HeroSearchComponent
     ],
     providers: [
-        HeroSearchService
+        HeroSearchService,
+        HeroDetailResolve
     ]
 })
 export class HeroModule { }

@@ -19,7 +19,6 @@ import { AppRoutingModule } from './app-routing.module';
 // feature modules
 import { CoreModule } from './app/core/core.module';
 import { DashboardModule } from './app/dashboard/dashboard.module';
-import { AdminModule }            from './app/admin/admin.module';
 import { HeroModule } from './app/hero/hero.module';
 import { DynamicFormModule } from './app/dynamic-form/dynamic-form.module';
 import { ContactModule }    from './app/contact/contact.module';
@@ -35,7 +34,6 @@ import { DialogService }        from './app/dialog.service';
     CoreModule.forRoot({userName: 'Miss Marple'}),
 
     DashboardModule,
-    AdminModule,
     HeroModule,
     DynamicFormModule,
     ContactModule,

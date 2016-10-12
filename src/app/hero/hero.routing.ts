@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HeroListComponent } from './hero-list/hero-list.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 
+import { CanDeactivateGuard }    from '../can-deactivate-guard.service';
+import { HeroDetailResolve }   from './hero-detail/hero-detail-resolve.service';
 
 const routes: Routes = [
     {
@@ -12,7 +14,11 @@ const routes: Routes = [
     },
     {
         path: 'detail/:id',
-        component: HeroDetailComponent
+        component: HeroDetailComponent,
+        canDeactivate: [CanDeactivateGuard],
+        resolve: {
+            hero: HeroDetailResolve
+        }
     }
 ];
 
