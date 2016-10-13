@@ -1,6 +1,6 @@
 # Build artifacts
-app/**/*.js
-app/**/*.map
+/app/**/*.js
+/app/**/*.map
 
 typings
 node_modules
