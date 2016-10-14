@@ -1,6 +1,5 @@
-import { NgModule }            from '@angular/core';
-import { Routes,
-         RouterModule }        from '@angular/router';
+import { NgModule }             from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 import { CrisisComponent }    from './crisis.component';
 import { CrisisListComponent }    from './crisis-list.component';
