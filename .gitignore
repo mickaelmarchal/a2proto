@@ -1,6 +1,6 @@
 # Build artifacts
-app/**/*.js
-app/**/*.map
+src/app/**/*.js
+src/app/**/*.map
 system-config.js
 system-config.js.map
 
