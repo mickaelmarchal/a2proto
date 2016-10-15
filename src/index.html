@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html>
+
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+
 <head>
+  <meta charset="utf-8" />
   <base href="/">
   <title>Angular 2 Tour of Heroes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <!-- IE required polyfills, in this exact order -->
   <script src="node_modules/core-js/client/shim.min.js"></script>
@@ -16,13 +21,15 @@
 
   <script>
     System.import('../system-config.js').then(function () {
-        System.import('main');
+        System.import('app/main');
       }).catch(console.error.bind(console));
   </script>
 </head>
 
-<body>
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-sidebar-closed">
   <my-app>Loading...</my-app>
+
+
 </body>
 
 </html>

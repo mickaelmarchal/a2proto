@@ -4,8 +4,27 @@ import { Routes, RouterModule } from '@angular/router';
 import { CanDeactivateGuard }   from './can-deactivate-guard.service';
 import { AuthGuard }            from "./auth-guard.service";
 
+import { BasePageComponent }    from "./base-page.component";
+import { PageOneComponent }    from "./page-one.component";
+import { PageTwoComponent }    from "./page-two.component";
+
 export const routes: Routes = [
 
+/*  {
+    path: '/base-page',
+    component: BasePageComponent,
+    children: [
+      {
+        path: 'page-one',
+        component: PageOneComponent
+      },
+      {
+        path: 'page-two',
+        component: PageTwoComponent
+      }
+    ]
+  },
+*/
   {
     path: 'crisis',
     loadChildren: 'app/crisis/crisis.module#CrisisModule'

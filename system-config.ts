@@ -3,9 +3,9 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map: any = {
-  'app' : 'app',
+  'app' : 'src/app',
 
-  'main': 'app/main.js',
+  'main': 'src/app/main.js',
   '@angular' : 'node_modules/@angular',
   'angular2-in-memory-web-api' : 'node_modules/angular2-in-memory-web-api',
   'rxjs' : 'node_modules/rxjs'
@@ -22,9 +22,9 @@ const packages: any = {
 
 const barrels: any = [
   // App specific barrels.
-  'app/routing',
-  'app/shared',
-  'app/models',
+  'src/app/routing',
+  'src/app/shared',
+  'src/app/models',
 ];
 
 barrels.forEach((barrelName: string) => {
