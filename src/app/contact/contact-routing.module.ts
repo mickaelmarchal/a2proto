@@ -7,7 +7,7 @@ import { ContactComponent }    from './contact.component';
 @NgModule({
   imports: [RouterModule.forChild([
     {
-      path: 'contact',
+      path: '',
       component: ContactComponent
     }
   ])],

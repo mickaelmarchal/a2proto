@@ -7,7 +7,7 @@ import { DynamicFormExampleComponent } from "./dynamic-form-example.component";
 @NgModule({
   imports: [RouterModule.forChild([
     {
-      path: 'dynamic-form',
+      path: '',
       component: DynamicFormExampleComponent
     }
   ])],

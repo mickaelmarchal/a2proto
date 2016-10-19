@@ -10,7 +10,7 @@ import { HeroDetailResolve }    from "./hero-detail/hero-detail-resolve.service"
 @NgModule({
   imports: [RouterModule.forChild([
     {
-      path: 'heroes',
+      path: '',
       component: HeroListComponent
     },
     {
@@ -22,6 +22,7 @@ import { HeroDetailResolve }    from "./hero-detail/hero-detail-resolve.service"
       }
     }
   ])],
+  providers: [CanDeactivateGuard],
   exports: [RouterModule]
 })
 export class HeroRoutingModule {}
