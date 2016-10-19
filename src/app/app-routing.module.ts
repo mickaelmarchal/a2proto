@@ -19,17 +19,16 @@ import { ContactModule }    from './contact/contact.module';
       path: '',
       component: AppLayoutComponent,
       canActivate: [AuthGuard],
-      canActivateChildren: [AuthGuard],
       children: [
         // lazy-loaded feature modules
         {
           path: 'crisis',
-          loadChildren: 'app/crisis/crisis.module#CrisisModule'
+          loadChildren: 'app/crisis/crisis.module#CrisisModule',
           canLoad: [AuthGuard]
         },
         {
           path: 'demo-form',
-          loadChildren: 'app/demo-form/demo-form.module#DemoFormModule'
+          loadChildren: 'app/demo-form/demo-form.module#DemoFormModule',
           canLoad: [AuthGuard]
         },
         {
