@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   selector: 'base-page-sidemenu',
   templateUrl: 'layout-sidemenu.component.html',
 })
-export class LayoutSidemenuComponent { }
+export class AppLayoutSidemenuComponent { }
 

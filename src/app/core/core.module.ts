@@ -7,6 +7,9 @@ import { TitleComponent }     from './title.component';
 import { UserService }        from './user.service';
 import { UserServiceConfig }  from './user.service';
 
+import { AuthGuard } from "./auth-guard.service";
+import { AuthService } from "./auth.service";
+
 
 @NgModule({
   imports: [
@@ -16,6 +19,9 @@ import { UserServiceConfig }  from './user.service';
     TitleComponent
   ],
   providers: [
+    AuthGuard,
+    AuthService,
+
     HeroService,
     UserService
   ],

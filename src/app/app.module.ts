@@ -20,13 +20,14 @@ import { DynamicFormModule }       from './dynamic-form/dynamic-form.module';
 import { ContactModule }           from './contact/contact.module';
 
 // TODO clean this
-import { LoginRoutingModule }      from './login-routing.module';
+//import { LoginRoutingModule }      from './login-routing.module';
 
 // components / service defined in current module
 import { AppComponent }            from './app.component';
-import { LayoutComponent }         from "./layout/layout.component";
-import { LayoutSidemenuComponent } from "./layout/layout-sidemenu.component";
-import { LoginComponent }          from './login.component';
+import { AppLayoutComponent }         from "./app-general/layout.component";
+import { AppLayoutSidemenuComponent } from "./app-general/layout-sidemenu.component";
+import { AppLoginComponent }  from './app-general/login.component';
+//import { LoginComponent } from './login.component';
 import { DialogService }           from './dialog.service';
 
 
@@ -38,7 +39,7 @@ import { DialogService }           from './dialog.service';
 
     AppRoutingModule,
 
-    LoginRoutingModule,
+//    LoginRoutingModule,
 
     DashboardModule,
     HeroModule,
@@ -47,9 +48,10 @@ import { DialogService }           from './dialog.service';
   ],
   declarations: [     /** things that are created in this module */
     AppComponent,
-    LoginComponent,
-    LayoutComponent,
-    LayoutSidemenuComponent
+    AppLoginComponent,
+    AppLayoutComponent,
+    AppLayoutSidemenuComponent,
+//    LoginComponent
 ],
   providers: [
     { provide: XHRBackend, useClass: InMemoryBackendService }, // in-mem server

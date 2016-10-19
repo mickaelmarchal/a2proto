@@ -1,9 +1,10 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import {AuthGuard} from "./auth-guard.service";
-import {LayoutComponent} from "./layout/layout.component";
-import {LoginComponent} from "./login.component";
+import { AuthGuard } from "./core/auth-guard.service";
+import { AppLayoutComponent } from "./app-general/layout.component";
+import { AppLoginComponent } from "./app-general/login.component";
+
 import { DashboardModule } from './dashboard/dashboard.module';
 import { HeroModule } from './hero/hero.module';
 import { DynamicFormModule } from './dynamic-form/dynamic-form.module';
@@ -13,20 +14,23 @@ import { ContactModule }    from './contact/contact.module';
 @NgModule({
   imports: [RouterModule.forRoot([
 
-    // all modules below are using the standard layout
-    // TODO add auth guard for all those pages
+    // all modules below are using the standard layout, and user must be logged-in
     {
       path: '',
-      component: LayoutComponent,
+      component: AppLayoutComponent,
+      canActivate: [AuthGuard],
+      canActivateChildren: [AuthGuard],
       children: [
         // lazy-loaded feature modules
         {
           path: 'crisis',
           loadChildren: 'app/crisis/crisis.module#CrisisModule'
+          canLoad: [AuthGuard]
         },
         {
           path: 'demo-form',
           loadChildren: 'app/demo-form/demo-form.module#DemoFormModule'
+          canLoad: [AuthGuard]
         },
         {
           path: 'admin',
@@ -37,19 +41,23 @@ import { ContactModule }    from './contact/contact.module';
         // imperatively-loaded feature modules - see https://github.com/angular/angular/issues/10958
         {
           path: 'heroes',
-          loadChildren: () => HeroModule
+          loadChildren: () => HeroModule,
+          canLoad: [AuthGuard]
         },
         {
           path: 'dynamic-form',
-          loadChildren: () => DynamicFormModule
+          loadChildren: () => DynamicFormModule,
+          canLoad: [AuthGuard]
         },
         {
           path: 'contact',
-          loadChildren: () => ContactModule
+          loadChildren: () => ContactModule,
+          canLoad: [AuthGuard]
         },
         {
           path: 'dashboard',
-          loadChildren: () => DashboardModule
+          loadChildren: () => DashboardModule,
+          canLoad: [AuthGuard]
         }
       ]
     },
@@ -57,7 +65,7 @@ import { ContactModule }    from './contact/contact.module';
     // this module is not using any layout
     {
       path: 'login',
-      component: LoginComponent,
+      component: AppLoginComponent,
     },
 
     // default route
