@@ -29,10 +29,12 @@ import { AppLayoutSidemenuComponent } from "./app-general/layout-sidemenu.compon
 import { AppLoginComponent }  from './app-general/login.component';
 //import { LoginComponent } from './login.component';
 import { DialogService }           from './dialog.service';
+import {SharedModule} from "./shared/shared.module";
 
 
 @NgModule({
   imports: [          /** things that we need to build this module */
+    SharedModule,
     BrowserModule,
     HttpModule,
     CoreModule.forRoot({userName: 'Miss Marple'}),

@@ -12,6 +12,12 @@ export class InMemoryDataService {
       { id: 19, name: 'Magma', age: 12 },
       { id: 20, name: 'Tornado', age: 34 }
     ];
-    return { heroes };
+
+    let login = [
+      { id: 'mika', 'username': 'mika', 'password': 'mika'}
+    ];
+
+
+    return { heroes, login };
   }
 }
