@@ -2,8 +2,10 @@ import { NgModule }             from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AuthGuard } from "./core/auth-guard.service";
-import { AppLayoutComponent } from "./app-general/layout.component";
-import { AppLoginComponent } from "./app-general/login.component";
+import { AppLayoutComponent } from "./app-general/layout/layout.component";
+import { AppLoginComponent } from "./app-general/login/login.component";
+import { AppPage404Component } from "./app-general/page404/page404.component";
+
 
 import { DashboardModule } from './dashboard/dashboard.module';
 import { HeroModule } from './hero/hero.module';
@@ -72,10 +74,13 @@ import { ContactModule }    from './contact/contact.module';
       path: '',
       redirectTo: '/dashboard',
       pathMatch: 'full'
+    },
+
+    // page 404
+    {
+      path: '**',
+      component: AppPage404Component,
     }
-
-    // TODO 404 page
-
   ])],
   exports: [RouterModule],
 })

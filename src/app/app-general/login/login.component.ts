@@ -1,19 +1,42 @@
-import { Component }   from '@angular/core';
+import { Component,trigger, transition, animate,
+  style, state }   from '@angular/core';
 import { Router }      from "@angular/router";
-import { AuthService } from '../core/auth.service';
+import { AuthService } from '../../core/auth.service';
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 
 
 @Component({
   moduleId: module.id,
   templateUrl: 'login.component.html',
-  styleUrls: ['login.component.css']
+  styleUrls: ['login.component.css'],
+
+  //animate entering and leaving the view
+  animations: [
+    trigger('routeAnimation', [
+      state('*',
+        style({
+          opacity: 1
+        })
+      ),
+      transition('void => *', [
+        style({
+          opacity: 0
+        }),
+        animate('4s linear')
+      ]),
+      transition('* => void', [
+        animate('4s linear', style({
+          opacity: 0
+        }))
+      ])
+    ])
+  ]
 })
 export class AppLoginComponent {
 
   showForgotPassword: boolean = false;
   showLoading: boolean = false;
-  errorMessage = null;
+  errorMessage: string = null;
 
   loginForm: FormGroup;
 

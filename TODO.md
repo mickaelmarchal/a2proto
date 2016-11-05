@@ -19,7 +19,7 @@
 
 ### Other ###
 
-- 404 page
+- [OK] 404 page
 - nice loading screen
 
 
