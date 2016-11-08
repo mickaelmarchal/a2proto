@@ -3,8 +3,6 @@ import { Router }      from "@angular/router";
 import { AuthService } from '../../core/auth.service';
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 
-// X
-
 
 @Component({
   moduleId: module.id,
