@@ -9,6 +9,7 @@ import { Http, Response } from '@angular/http';
 export class AuthService {
 
   private loginUrl = 'app/login';  // URL to web API
+//  private loginUrl = "https://localhost/authenticate";
 
   public isLoggedIn: boolean = false;
 
@@ -24,8 +25,8 @@ export class AuthService {
    * @returns {Observable<R>}
    */
   public login(formValues: any): Observable<boolean> {
-
-    return this.http.get(this.loginUrl+'/'+formValues.username)
+    // https://a2backend.local/authenticate/user/password/1
+    return this.http.get(this.loginUrl+'/'+formValues.username+'/'+formValues.password+'/'+formValues.remember)
       .map(this.extractData)
       .map(user => {
         //TODO get JWT token and store it

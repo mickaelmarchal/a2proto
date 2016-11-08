@@ -24,9 +24,11 @@ import { ContactModule }           from './contact/contact.module';
 
 // components / service defined in current module
 import { AppComponent }            from './app.component';
-import { AppLayoutComponent }         from "./app-general/layout.component";
-import { AppLayoutSidemenuComponent } from "./app-general/layout-sidemenu.component";
-import { AppLoginComponent }  from './app-general/login.component';
+import { AppLayoutComponent }         from "./app-general/layout/layout.component";
+import { AppLayoutSidemenuComponent } from "./app-general/layout-sidemenu/layout-sidemenu.component";
+import { AppLoginComponent }  from './app-general/login/login.component';
+import { AppPage404Component }  from './app-general/page404/page404.component';
+
 //import { LoginComponent } from './login.component';
 import { DialogService }           from './dialog.service';
 import {SharedModule} from "./shared/shared.module";
@@ -53,6 +55,7 @@ import {SharedModule} from "./shared/shared.module";
     AppLoginComponent,
     AppLayoutComponent,
     AppLayoutSidemenuComponent,
+    AppPage404Component
 //    LoginComponent
 ],
   providers: [
