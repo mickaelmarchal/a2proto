@@ -12,15 +12,15 @@
 
 ### Layout ###
 
-- activeRoute to activate links in sidebar
-- pageTitle
+- [almost OK] activeRoute to activate links in sidebar
+- [OK] pageTitle
 - loading bar (to be connected with resolvers)
 
 
 ### Other ###
 
 - [OK] 404 page
-- nice loading screen
+- [OK] nice loading screen
 
 
 ### Build ###

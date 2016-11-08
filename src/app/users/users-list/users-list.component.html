@@ -1,12 +1,40 @@
-<h2>Users</h2>
+<h1 class="page-title"> Manage Users</h1>
+<div class="page-bar">
+  <ul class="page-breadcrumb">
+    <li>
+      <i class="icon-home"></i>
+      <a routerLink="/">Home</a>
+      <i class="fa fa-angle-right"></i>
+    </li>
+    <li>
+      <span>Users management</span>
+    </li>
+  </ul>
+</div>
 
-<ul>
-  <li *ngFor="let user of users">
-    <strong>{{ user.firstName }} {{ user.lastName }}</strong> - {{ user.email }}
-    - <a (click)="deleteUser(user.id)">Delete</a>
-  </li>
-</ul>
+<div class="row">
+  <div class="col-md-12">
 
-<div class="error" *ngIf="error">{{error}}</div>
+    <div class="portlet light ">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="icon-users font-dark"></i>
+          <span class="caption-subject font-dark bold uppercase">Users</span>
+        </div>
+      </div>
+      <div class="portlet-body">
 
-<a class="btn" routerLink="/users/add">Add user</a>
+        <ul>
+          <li *ngFor="let user of users">
+            <strong>{{ user.firstName }} {{ user.lastName }}</strong> - {{ user.email }}
+            - <a (click)="deleteUser(user.id)">Delete</a>
+          </li>
+        </ul>
+
+        <div class="error" *ngIf="error">{{error}}</div>
+
+        <button type="button" routerLink="/users/add" class="btn red"><i class="icon=-plus"></i> Create new user</button>
+      </div>
+    </div>
+  </div>
+</div>

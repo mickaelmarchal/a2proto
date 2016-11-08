@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { User } from '../user';
 import { UserService } from '../../core/user.service';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   moduleId: module.id,
@@ -14,6 +15,7 @@ export class UsersListComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private title: Title,
     private route: ActivatedRoute,
     private userService: UserService) { }
 
@@ -33,6 +35,9 @@ export class UsersListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.title.setTitle('User management');
+
     //the forEach allows listening to all changes in the params (which is an observable)
     this.route.params.forEach((params: Params) => {
       this.getUsers();

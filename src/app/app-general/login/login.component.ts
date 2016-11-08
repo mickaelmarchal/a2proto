@@ -85,11 +85,6 @@ export class AppLoginComponent implements OnInit {
 
       // authentication success
       (res) => {
-
-        console.log(res, 'SUCCESS');
-
-        this.toggleLoading();
-
         if (this.authService.isLoggedIn) {
 
           // Get the redirect URL from our auth service
