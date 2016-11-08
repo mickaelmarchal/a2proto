@@ -29,6 +29,11 @@ import { ContactModule }    from './contact/contact.module';
           canLoad: [AuthGuard]
         },
         {
+          path: 'users',
+          loadChildren: 'app/users/users.module#UsersModule',
+          canLoad: [AuthGuard]
+        },
+        {
           path: 'demo-form',
           loadChildren: 'app/demo-form/demo-form.module#DemoFormModule',
           canLoad: [AuthGuard]

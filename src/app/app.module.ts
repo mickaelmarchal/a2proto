@@ -59,8 +59,8 @@ import {SharedModule} from "./shared/shared.module";
 //    LoginComponent
 ],
   providers: [
-    { provide: XHRBackend, useClass: InMemoryBackendService }, // in-mem server
-    { provide: SEED_DATA, useClass: InMemoryDataService },     // in-mem server data
+//    { provide: XHRBackend, useClass: InMemoryBackendService }, // in-mem server
+//    { provide: SEED_DATA, useClass: InMemoryDataService },     // in-mem server data
     DialogService
   ],
   bootstrap: [AppComponent]

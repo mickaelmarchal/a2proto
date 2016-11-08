@@ -13,7 +13,7 @@ export class TitleComponent {
   user = '';
 
   constructor(userService: UserService) {
-    this.user = userService.userName;
+    this.user = 'TEST'; //userService.userName;
   }
 }
 

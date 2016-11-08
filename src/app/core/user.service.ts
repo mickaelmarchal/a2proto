@@ -1,37 +1,49 @@
-// Crazy copy of the app/user.service
-// Proves that UserService is an app-wide singleton and only instantiated once
-// IFF shared.module follows the `forRoot` pattern
-//
-// If it didn't, a new instance of UserService would be created
-// after each lazy load and the userName would double up.
+import { Injectable } from '@angular/core';
+import { Headers, Http, Response } from '@angular/http';
 
-import { Injectable, Optional } from '@angular/core';
+import 'rxjs/add/operator/toPromise';
 
-let nextId = 1;
-
-export class UserServiceConfig {
-  userName = 'Philip Marlowe';
-}
+import { User } from '../users/user';
 
 @Injectable()
 export class UserService {
-  id = nextId++;
-  private _userName = 'Sherlock Holmes';
 
-  constructor(@Optional() config: UserServiceConfig) {
-    if (config) { this._userName = config.userName; }
+  private usersUrl = 'https://a2backend.local/users';  // URL to web api
+
+  constructor(private http: Http) { }
+
+  getUsers(): Promise<User[]> {
+    return this.http
+      .get(this.usersUrl)
+      .toPromise()
+      .then(response => response.json() as User[])
+      .catch(this.handleError);
   }
 
-  get userName() {
-    // Demo: add a suffix if this service has been created more than once
-    const suffix = this.id > 1 ? ` times ${this.id}` : '';
-    return this._userName + suffix;
+  addUser(formValues: any): Promise<User> {
+    return this.http
+      .post(this.usersUrl, formValues)
+      .toPromise()
+      .then(response => response.json() as User)
+      .catch(this.handleError);
+  }
+
+  deleteUser(userId: number): Promise<void> {
+    return this.http
+      .delete(this.usersUrl+'/'+userId)
+      .toPromise()
+      .then(response => {})
+      .catch(this.handleError);
+  }
+
+
+  private handleError(error: any): Promise<any> {
+    console.error('An error occurred', error);
+    return Promise.reject(error.message || error);
   }
 }
 
-
-/*
-Copyright 2016 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/
+//needed by angular demo
+export class UserServiceConfig {
+  userName = 'Philip Marlowe';
+}
