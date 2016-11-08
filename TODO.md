@@ -2,13 +2,13 @@
 
 ### Login ###
 
-- animation fade in /out
+- [OK] animation fade in /out
 - forgot password
 - real login + form validation
 - real logout
 - ACLs
 - error 403 (when an user is not allowed to access a page)
-- autofocus sur champ username (directive ?)
+- [OK] autofocus on username (directive ?)
 
 ### Layout ###
 

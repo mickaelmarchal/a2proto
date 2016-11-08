@@ -23,7 +23,7 @@ export class AuthService {
    * @param formValues
    * @returns {Observable<R>}
    */
-  public login(formValues): Observable<boolean> {
+  public login(formValues: any): Observable<boolean> {
 
     return this.http.get(this.loginUrl+'/'+formValues.username)
       .map(this.extractData)

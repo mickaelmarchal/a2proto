@@ -3,6 +3,8 @@ import { CommonModule }       from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { HighlightDirective } from './highlight.directive';
+import { FocusDirective }     from './focus.directive';
+import { AutofocusDirective }     from './autofocus.directive';
 import { AwesomePipe }        from './awesome.pipe';
 
 
@@ -12,10 +14,14 @@ import { AwesomePipe }        from './awesome.pipe';
   ],
   declarations: [
     HighlightDirective,
+    FocusDirective,
+    AutofocusDirective,
     AwesomePipe
   ],
   exports: [
     HighlightDirective,
+    FocusDirective,
+    AutofocusDirective,
     AwesomePipe,
     CommonModule,
     FormsModule,
