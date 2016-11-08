@@ -8,8 +8,8 @@ import { Http, Response } from '@angular/http';
 @Injectable()
 export class AuthService {
 
-  private loginUrl = 'app/login';  // URL to web API
-//  private loginUrl = "https://localhost/authenticate";
+//  private loginUrl = 'app/login';  // URL to web API
+  private loginUrl = "https://localhost/authenticate";
 
   public isLoggedIn: boolean = false;
 

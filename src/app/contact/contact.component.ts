@@ -18,7 +18,7 @@ export class ContactComponent implements OnInit {
   userName = '';
 
   constructor(private contactService: ContactService, userService: UserService) {
-    this.userName = userService.userName;
+    this.userName = 'TEST'; //userService.userName;
   }
 
   ngOnInit() {
