@@ -12,9 +12,9 @@
 
 ### Layout ###
 
-- [almost OK] activeRoute to activate links in sidebar
+- [OK] activeRoute to activate links in sidebar
 - [OK] pageTitle
-- loading bar (to be connected with resolvers)
+- [OK]loading bar
 
 
 ### Other ###
@@ -28,4 +28,5 @@
 - webpack building
 - build-time compilation
 - use sass for login page-specific CSS
+- SASS
 

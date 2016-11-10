@@ -1,4 +1,4 @@
-import {Component, HostBinding, style, state, animate, transition, trigger, OnInit, OnDestroy} from '@angular/core';
+import {Component, HostBinding, style, state, animate, transition, trigger, OnInit} from '@angular/core';
 import { Router }      from "@angular/router";
 import { AuthService } from '../../core/auth.service';
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
@@ -31,7 +31,7 @@ import {FormGroup, FormBuilder, Validators} from "@angular/forms";
     ])
   ]
 })
-export class AppLoginComponent implements OnInit, OnDestroy {
+export class AppLoginComponent implements OnInit {
 
   @HostBinding('@routeAnimation') get routeAnimation() {
     return true;
@@ -66,12 +66,6 @@ export class AppLoginComponent implements OnInit, OnDestroy {
     this.showForgotPassword = false;
     this.showLoading = false;
     this.errorMessage = null;
-
-    document.querySelector(".pace").setAttribute('data-nolayout', 'true');
-  }
-
-  ngOnDestroy() {
-    document.querySelector(".pace").removeAttribute('data-nolayout');
   }
 
   toggleForgotPassword() {

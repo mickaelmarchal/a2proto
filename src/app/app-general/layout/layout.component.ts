@@ -1,4 +1,4 @@
-import { Component }              from '@angular/core';
+import {Component, OnInit, OnDestroy}              from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { AuthService }            from "../../core/auth.service";
 
@@ -7,7 +7,7 @@ import { AuthService }            from "../../core/auth.service";
   moduleId: module.id,
   templateUrl: 'layout.component.html',
 })
-export class AppLayoutComponent {
+export class AppLayoutComponent implements OnInit, OnDestroy {
 
   constructor(
     public authService: AuthService,
@@ -18,6 +18,14 @@ export class AppLayoutComponent {
   logout() {
     this.authService.logout();
     this.router.navigate(['']);
+  }
+
+  ngOnInit() {
+    document.querySelector("body").classList.add("withlayout");
+  }
+
+  ngOnDestroy() {
+    document.querySelector("body").classList.remove("withlayout");
   }
 
 }
