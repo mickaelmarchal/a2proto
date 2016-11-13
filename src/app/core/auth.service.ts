@@ -5,15 +5,14 @@ import '../rxjs-extensions';
 
 import { Http, Response } from '@angular/http';
 
-// X
 
 @Injectable()
 export class AuthService {
 
-//  private loginUrl = 'app/login';  // URL to web API
-  private loginUrl = "https://localhost/authenticate";
+  private loginUrl = "https://a2backend.local/api/login";
 
   public isLoggedIn: boolean = false;
+  public authToken: string = null;
 
   // store the URL so we can redirect after logging in
   public redirectUrl: string;
@@ -27,17 +26,16 @@ export class AuthService {
    * @returns {Observable<R>}
    */
   public login(formValues: any): Observable<boolean> {
-    // https://a2backend.local/authenticate/user/password/1
-    return this.http.get(this.loginUrl+'/'+formValues.username+'/'+formValues.password+'/'+formValues.remember)
-      .map(this.extractData)
-      .map(user => {
+    return this.http.post(this.loginUrl, {
+      _username: formValues.username,
+      _password: formValues.password
+    }).map(this.extractData)
+      .map(data => {
         //TODO get JWT token and store it
         this.isLoggedIn = true;
+        this.authToken = data.token;
       })
       .catch(this.handleError);
-
-
-    //return Observable.of(true).delay(1500).do(val => this.isLoggedIn = true);
   }
 
   private extractData(res: Response) {

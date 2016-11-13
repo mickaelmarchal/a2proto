@@ -8,7 +8,7 @@ import { User } from '../users/user';
 @Injectable()
 export class UserService {
 
-  private usersUrl = 'https://a2backend.local/users';  // URL to web api
+  private usersUrl = 'https://a2backend.local/api/users';  // URL to web api
 
   constructor(private http: Http) { }
 
