@@ -1,4 +1,4 @@
-import { Component }   from '@angular/core';
+/*import { Component }   from '@angular/core';
 import {Router, NavigationExtras}      from '@angular/router';
 
 import { AuthService } from './core/auth.service';
@@ -53,3 +53,4 @@ export class LoginComponent {
     this.setMessage();
   }
 }
+*/

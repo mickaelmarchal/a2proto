@@ -27,11 +27,11 @@ import { AuthService } from "./auth.service";
     HeroService,
     UserService,
 
-    provideAuth({
+/*    provideAuth({
       //tokenGetter: () => localStorage.getItem(tokenName),
       noJwtError: false
     }),
-
+*/
     JwtHelper
   ],
   exports: [

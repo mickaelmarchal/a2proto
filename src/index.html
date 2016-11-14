@@ -9,7 +9,7 @@
 <head>
   <meta charset="utf-8" />
   <base href="/">
-  <title>Angular 2 Tour of Heroes</title>
+  <title>Angular 2 App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -41,19 +41,10 @@
   <link href="../assets/custom.css" rel="stylesheet" type="text/css" />
   <!-- END THEME LAYOUT STYLES -->
 
-  <link rel="shortcut icon" href="favicon.ico" /> </head>
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
-  <!-- IE required polyfills, in this exact order -->
-  <script src="node_modules/core-js/client/shim.min.js"></script>
-  <script src="node_modules/zone.js/dist/zone.js"></script>
-  <script src="node_modules/reflect-metadata/Reflect.js"></script>
-  <script src="node_modules/systemjs/dist/system.src.js"></script>
 
-  <script>
-    System.import('../system-config.js').then(function () {
-      System.import('app/main');
-    }).catch(console.error.bind(console));
-  </script>
+  <style>#str-dlls { display: none }</style>
 </head>
 
 <body class="login page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-sidebar-closed">
@@ -64,6 +55,14 @@
     Loading app, please wait...
   </div>
 </my-app>
+
+
+<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=console.*,Intl.~locale.en&gated=1"></script>
+<div id="str-dlls">
+  <%= '<' %>script src="/polyfill.dll.js"<%= '>' %><%= '<' %>/script<%= '>' %>
+  <%= '<' %>script src="/vendor.dll.js"<%= '>' %><%= '<' %>/script<%= '>' %>
+</div>
+<script src="/index.js"></script>
 
 
 <!--[if lt IE 9]>

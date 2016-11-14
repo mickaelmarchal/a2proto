@@ -25,44 +25,44 @@ import { ContactModule }    from './contact/contact.module';
         // lazy-loaded feature modules
         {
           path: 'crisis',
-          loadChildren: 'app/crisis/crisis.module#CrisisModule',
+          loadChildren: './crisis/crisis.module#CrisisModule',
           canLoad: [AuthGuard]
         },
         {
           path: 'users',
-          loadChildren: 'app/users/users.module#UsersModule',
+          loadChildren: './users/users.module#UsersModule',
           canLoad: [AuthGuard]
         },
         {
           path: 'demo-form',
-          loadChildren: 'app/demo-form/demo-form.module#DemoFormModule',
+          loadChildren: './demo-form/demo-form.module#DemoFormModule',
           canLoad: [AuthGuard]
         },
         {
           path: 'admin',
-          loadChildren: 'app/admin/admin.module#AdminModule',
+          loadChildren: './admin/admin.module#AdminModule',
           canLoad: [AuthGuard]
         },
 
         // imperatively-loaded feature modules - see https://github.com/angular/angular/issues/10958
         {
           path: 'heroes',
-          loadChildren: () => HeroModule,
+          loadChildren: './hero/hero.module#HeroModule?sync=true',
           canLoad: [AuthGuard]
         },
         {
           path: 'dynamic-form',
-          loadChildren: () => DynamicFormModule,
+          loadChildren: './dynamic-form/dynamic-form.module#DynamicFormModule?sync=true',
           canLoad: [AuthGuard]
         },
         {
           path: 'contact',
-          loadChildren: () => ContactModule,
+          loadChildren: './contact/contact.module#ContactModule?sync=true',
           canLoad: [AuthGuard]
         },
         {
           path: 'dashboard',
-          loadChildren: () => DashboardModule,
+          loadChildren: './dashboard/dashboard.module#DashboardModule?sync=true',
           canLoad: [AuthGuard]
         }
       ]
@@ -77,7 +77,7 @@ import { ContactModule }    from './contact/contact.module';
     // default route
     {
       path: '',
-      redirectTo: '/dashboard',
+      redirectTo: '/users',
       pathMatch: 'full'
     },
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import '../rxjs-extensions';
+import '../../rxjs.imports';
 
 import { Http, Response } from '@angular/http';
 import {JwtHelper} from "angular2-jwt";

@@ -2,7 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
 
-import './rxjs-extensions';
+import '../rxjs.imports';
 
 // Routing Module
 import { AppRoutingModule }        from './app-routing.module';
@@ -14,8 +14,6 @@ import { HeroModule }              from './hero/hero.module';
 import { DynamicFormModule }       from './dynamic-form/dynamic-form.module';
 import { ContactModule }           from './contact/contact.module';
 
-// TODO clean this
-//import { LoginRoutingModule }      from './login-routing.module';
 
 // components / service defined in current module
 import { AppComponent }            from './app.component';
@@ -25,7 +23,7 @@ import { AppLoginComponent }  from './app-general/login/login.component';
 import { AppPage404Component }  from './app-general/page404/page404.component';
 
 //import { LoginComponent } from './login.component';
-import { DialogService }           from './dialog.service';
+ import { DialogService }           from './dialog.service';
 import {SharedModule} from "./shared/shared.module";
 
 
@@ -39,7 +37,6 @@ import {SharedModule} from "./shared/shared.module";
     AppRoutingModule,
 
 //    LoginRoutingModule,
-
     DashboardModule,
     HeroModule,
     DynamicFormModule,
