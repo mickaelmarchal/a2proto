@@ -1,11 +1,13 @@
-import {Directive, AfterViewInit, ElementRef, DoCheck} from '@angular/core';
+import {Directive, AfterViewInit, ElementRef, DoCheck, Renderer} from '@angular/core';
 
 
 @Directive({ selector: '[autofocus]' })
 export class AutofocusDirective implements AfterViewInit, DoCheck {
+
   private lastVisible: boolean = false;
   private initialised: boolean = false;
-  constructor(private el: ElementRef) {}
+
+  constructor(private el: ElementRef, renderer: Renderer) {}
 
   ngAfterViewInit() {
     this.initialised = true;

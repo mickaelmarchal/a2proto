@@ -9,6 +9,8 @@
 - ACLs
 - error 403 (when an user is not allowed to access a page)
 - [OK] autofocus on username (directive ?)
+- Use proper Redux architecture with RxJs to handle state
+
 
 ### Layout ###
 

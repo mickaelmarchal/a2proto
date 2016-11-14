@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import '../rxjs-extensions';
 
 import { Http, Response } from '@angular/http';
+import {JwtHelper} from "angular2-jwt";
 
 
 @Injectable()
@@ -17,7 +18,10 @@ export class AuthService {
   // store the URL so we can redirect after logging in
   public redirectUrl: string;
 
-  constructor (private http: Http) {}
+  constructor (
+    private http: Http,
+    private jwtHelper: JwtHelper
+  ) {}
 
 
   /**
@@ -31,16 +35,28 @@ export class AuthService {
       _password: formValues.password
     }).map(this.extractData)
       .map(data => {
+
+        console.log('auth data');
+        console.log(data);
+
         //TODO get JWT token and store it
         this.isLoggedIn = true;
-        this.authToken = data.token;
+        this.authToken = this.jwtHelper.decodeToken(data.token);
+
+        console.log(this.authToken, 'auth token');
+
+        localStorage.setItem('id_token', data.token);
+
+
       })
       .catch(this.handleError);
   }
 
   private extractData(res: Response) {
     let body = res.json();
-    return body.data || { };
+
+    console.log(body, 'BODY');
+    return body || { };
   }
 
 

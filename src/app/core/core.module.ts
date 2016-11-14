@@ -1,11 +1,13 @@
-import { ModuleWithProviders, NgModule,
-  Optional, SkipSelf }        from '@angular/core';
+import { ModuleWithProviders, NgModule, Optional, SkipSelf }        from '@angular/core';
 import { CommonModule }       from "@angular/common";
 
 import { HeroService }        from './hero.service';
 import { TitleComponent }     from './title.component';
 import { UserService }        from './user.service';
 import { UserServiceConfig }  from './user.service';
+
+
+import {provideAuth, JwtHelper} from 'angular2-jwt';
 
 import { AuthGuard } from "./auth-guard.service";
 import { AuthService } from "./auth.service";
@@ -23,7 +25,14 @@ import { AuthService } from "./auth.service";
     AuthService,
 
     HeroService,
-    UserService
+    UserService,
+
+    provideAuth({
+      //tokenGetter: () => localStorage.getItem(tokenName),
+      noJwtError: false
+    }),
+
+    JwtHelper
   ],
   exports: [
     TitleComponent

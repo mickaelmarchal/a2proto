@@ -2,11 +2,6 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule }    from '@angular/http';
 
-// Imports for loading & configuring the in-memory web api
-// TODO move this somewhere else (coreModule ?)
-import { XHRBackend }                        from '@angular/http';
-import { InMemoryBackendService, SEED_DATA } from 'angular2-in-memory-web-api';
-import { InMemoryDataService }               from './in-memory-data.service';
 import './rxjs-extensions';
 
 // Routing Module
@@ -59,8 +54,6 @@ import {SharedModule} from "./shared/shared.module";
 //    LoginComponent
 ],
   providers: [
-//    { provide: XHRBackend, useClass: InMemoryBackendService }, // in-mem server
-//    { provide: SEED_DATA, useClass: InMemoryDataService },     // in-mem server data
     DialogService
   ],
   bootstrap: [AppComponent]
