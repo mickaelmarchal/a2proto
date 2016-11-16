@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-import { User } from '../user';
-import { UserService } from '../../../core/user.service';
+import { UsersService } from '../../../core/users/users.service';
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 
 @Component({
@@ -13,9 +12,11 @@ export class UsersAddComponent {
 
   userAddForm: FormGroup;
 
-  constructor(public userService: UserService,
-              public router: Router,
-              public fb: FormBuilder) {
+  constructor(
+    public usersService: UsersService,
+    public router: Router,
+    public fb: FormBuilder
+  ) {
     this.userAddForm = fb.group({
       'email': ['', Validators.required],
       'firstName': ['', Validators.required],
@@ -25,12 +26,12 @@ export class UsersAddComponent {
   }
 
   addUser(formValues: any): void {
-    this.userService
+    /*this.usersService
       .addUser(formValues)
       .then(user => {
         console.log(user, 'new user');
         this.router.navigate(['/users'])
       })
-      .catch(error => console.log(error));
+      .catch(error => console.log(error));*/
   }
 }

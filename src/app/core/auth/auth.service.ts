@@ -21,7 +21,7 @@ export class AuthRequestService extends RequestBase {
   constructor(
     public http: Http,
   ) {
-    super(http);
+    super();
   }
 
   /**
@@ -31,6 +31,7 @@ export class AuthRequestService extends RequestBase {
    */
   public login(credentials: AuthCredentials): Observable<boolean> {
 
+    //noinspection TypeScriptValidateTypes
     return this.http.post(`${API_BASE_URL}/login`, {
       _username: credentials.username,
       _password: credentials.password
@@ -41,7 +42,7 @@ export class AuthRequestService extends RequestBase {
       .map((data: any) => {
 
         //TODO not at the right place !
-        localStorage.setItem('id_token', data.token);
+        sessionStorage.setItem('id_token', data.token);
 
         // return payload to use by action
         let res: CurrentUser = data.data;
@@ -61,7 +62,7 @@ export class AuthRequestService extends RequestBase {
    * TODO not used for the moment, no need to log out on server
    */
   public logout(): Observable<string> {
-    return this.http.get(`${API_BASE_URL}/logout`, this.optionsNoPre)
+    return this.http.get(`${API_BASE_URL}/logout`)
       .map(res => res.text());
   }
 

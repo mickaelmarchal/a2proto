@@ -3,8 +3,6 @@ import { CommonModule }       from "@angular/common";
 
 import { HeroService }        from './hero.service';
 import { TitleComponent }     from './title.component';
-import { UserService }        from './user.service';
-import { UserServiceConfig }  from './user.service';
 
 
 import { AuthGuard } from "./auth-guard.service";
@@ -23,7 +21,6 @@ import { DialogService }           from './dialog.service';
     AuthService,
 
     HeroService,
-    UserService,
     DialogService,
   ],
   exports: [
@@ -41,12 +38,10 @@ export class CoreModule {
   }
 
   // convention to say that it can only be imported by root module
-  static forRoot(config: UserServiceConfig): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders {
     return {
       ngModule: CoreModule,
-      providers: [
-        { provide: UserServiceConfig, useValue: config }
-      ]
+      providers: [ ]
     };
   }
 

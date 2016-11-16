@@ -2,7 +2,6 @@
 import { Component, OnInit }      from '@angular/core';
 
 import { Contact, ContactService } from './contact.service';
-import { UserService }             from '../../core/user.service';
 
 @Component({
   moduleId: module.id,
@@ -17,7 +16,7 @@ export class ContactComponent implements OnInit {
   msg = 'Loading contacts ...';
   userName = '';
 
-  constructor(private contactService: ContactService, userService: UserService) {
+  constructor(private contactService: ContactService) {
     this.userName = 'TEST'; //userService.userName;
   }
 

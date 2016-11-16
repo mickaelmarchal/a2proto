@@ -6,6 +6,7 @@ import { HighlightDirective } from './highlight.directive';
 import { FocusDirective }     from './focus.directive';
 import { AutofocusDirective }     from './autofocus.directive';
 import { AwesomePipe }        from './awesome.pipe';
+import {DatatableComponent} from "./datatable/datatable.component";
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { AwesomePipe }        from './awesome.pipe';
     HighlightDirective,
     FocusDirective,
     AutofocusDirective,
-    AwesomePipe
+    AwesomePipe,
+    DatatableComponent
   ],
   exports: [
     HighlightDirective,
@@ -25,7 +27,8 @@ import { AwesomePipe }        from './awesome.pipe';
     AwesomePipe,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DatatableComponent
   ]
 })
 export class SharedModule { }

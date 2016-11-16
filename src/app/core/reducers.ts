@@ -7,6 +7,8 @@ import { routerReducer, RouterState } from '@ngrx/router-store';
 import { userReducer, UserState } from './user/user.reducer';
 import { authReducer } from './auth/auth.reducer';
 import { AuthState } from './auth/auth.model';
+import {UsersState} from "./users/users.model";
+import {usersReducer} from "./users/users.reducer";
 
 
 
@@ -14,12 +16,14 @@ export interface AppState {
   router: RouterState;
   user: UserState;
   auth: AuthState;
+  users: UsersState
 }
 
 export const reducers = {
   router: routerReducer,
   user: userReducer,
   auth: authReducer,
+  users: usersReducer
 };
 
 // Generate a reducer to set the root state in dev mode for HMR

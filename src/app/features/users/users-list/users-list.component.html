@@ -24,16 +24,11 @@
       </div>
       <div class="portlet-body">
 
-        <ul>
-          <li *ngFor="let user of users">
-            <strong>{{ user.firstName }} {{ user.lastName }}</strong> - {{ user.email }}
-            - <a (click)="deleteUser(user.id)">Delete</a>
-          </li>
-        </ul>
+        <datatable [data]="users" [columns]="columns" [actions]="actions"></datatable>
 
         <div class="error" *ngIf="error">{{error}}</div>
 
-        <button type="button" routerLink="/users/add" class="btn red"><i class="icon=-plus"></i> Create new user</button>
+        <button type="button" routerLink="/users/add" class="btn green"><i class="icon-plus"></i> Create new user</button>
       </div>
     </div>
   </div>

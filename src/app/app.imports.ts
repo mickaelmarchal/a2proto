@@ -13,6 +13,8 @@ import { StoreDevToolsModule } from './features/devtools/store-devtools.module';
 
 
 import { AuthEffects } from './core/auth/auth.effects';
+import { UsersEffects } from './core/users/users.effects';
+
 
 import {SharedModule} from "./shared/shared.module";
 import {CoreModule} from "./core/core.module";
@@ -31,11 +33,13 @@ if (ENV === 'development' && !AOT &&
 ]);
 
 export const APP_IMPORTS = [
+  EffectsModule.run(UsersEffects),
   EffectsModule.run(AuthEffects),
+
 //  MaterialModule.forRoot(),
 
   SharedModule,
-  CoreModule.forRoot({userName: 'Miss Marple'}),
+  CoreModule.forRoot(),
 
   AppRoutingModule,
 
