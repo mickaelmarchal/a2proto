@@ -1,12 +1,11 @@
-import {Component, HostBinding, style, state, animate, transition, trigger, OnInit} from '@angular/core';
+import { Component, HostBinding,
+  style, state, animate, transition, trigger,
+  OnInit } from '@angular/core';
 import { Router }      from "@angular/router";
-import { AuthService } from '../../core/auth.service';
-import {FormGroup, FormBuilder, Validators} from "@angular/forms";
-import {Store} from "@ngrx/store";
-import {AuthActions} from "../../core/auth/auth.actions";
-import {AppState} from "../../core/reducers";
-import {AuthCredentials} from "../../core/auth/auth.model";
-import {Observable, Subject} from "rxjs";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+
+import { AuthService } from '../../core/auth/auth.service';
+import { AuthCredentials, AuthState } from "../../core/auth/auth.model";
 
 
 @Component({
@@ -43,21 +42,14 @@ export class AppLoginComponent implements OnInit {
   }
 
   showForgotPassword: boolean = false;
-
   loginForm: FormGroup;
   forgotPasswordForm: FormGroup;
-
-  auth: any;
-  auth$: Observable<any>;
-  destroyed$: Subject<any> = new Subject<any>();
+  auth: AuthState;
 
   constructor(
     public authService: AuthService,
     public router: Router,
     public fb: FormBuilder,
-
-    private store: Store<AppState>,
-    private authActions: AuthActions
 ) {
 
     //init forms
@@ -72,13 +64,7 @@ export class AppLoginComponent implements OnInit {
     });
 
     //listen to changes in auth
-    this.auth$ = this.store.select(state => {
-      console.log(state, 'STATE');
-      return state.auth
-    });
-    this.auth$.takeUntil(this.destroyed$)
-      .subscribe(auth => this.authChanged(auth));
-
+    this.authService.onAuthChange().subscribe(auth => this.authChanged(auth));
   }
 
   ngOnInit() {
@@ -89,21 +75,14 @@ export class AppLoginComponent implements OnInit {
     this.showForgotPassword = ! this.showForgotPassword;
   }
 
-
   login(credentials: AuthCredentials) {
-    this.store.dispatch(this.authActions.login(credentials));
+    this.authService.login(credentials);
   }
 
   authChanged(auth) {
-    console.log(auth, 'AUTH CHANGED');
-
     this.auth = auth;
-
-    console.log('loggedIn='+auth.loggedIn);
     if(auth.loggedIn) {
       let redirect = auth.redirectUrl ? auth.redirectUrl : '';
-      console.log('redirUrl='+auth.redirectUrl);
-
       this.router.navigate([redirect]);
     }
   }

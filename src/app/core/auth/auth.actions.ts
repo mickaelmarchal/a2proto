@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
 import { Action } from '@ngrx/store';
 
-import { Auth, AuthCredentials } from './auth.model';
+import { CurrentUser, AuthCredentials } from './auth.model';
 
 @Injectable()
 
@@ -35,10 +35,10 @@ export class AuthActions {
   }
 
   static LOGIN_SUCCESS = '[Auth] Login Success';
-  loginSuccess(auth: Auth): Action {
+  loginSuccess(currentUser: CurrentUser): Action {
     return {
       type: AuthActions.LOGIN_SUCCESS,
-      payload: auth
+      payload: currentUser
     };
   }
 
@@ -50,19 +50,4 @@ export class AuthActions {
     };
   }
 
-  static LOGOUT_FAIL = '[Auth] Logout Fail';
-  logoutFail(err: Error): Action {
-    return {
-      type: AuthActions.LOGOUT_FAIL,
-      payload: err
-    };
-  }
-
-  static LOGOUT_SUCCESS = '[Auth] Logout Success';
-  logoutSuccess(res: Response): Action {
-    return {
-      type: AuthActions.LOGOUT_SUCCESS,
-      payload: res
-    };
-  }
 }

@@ -1,36 +1,33 @@
 /* tslint:disable: no-switch-case-fall-through */
-import { Action } from '@ngrx/store';
+import { Action }        from '@ngrx/store';
 
-import { AuthActions } from './auth.actions';
-import { Auth } from './auth.model';
+import { AuthActions }   from './auth.actions';
+import { AuthState }     from './auth.model';
 
-export interface AuthState {
-  currentUser: Auth;
-  loading: boolean;
-  loggedIn: boolean;
-  errorMessage: string|null;
-  redirectUrl: string;
-};
 
+/**
+ * Initial state for Auth store
+ *
+ * @type {{currentUser: any; token: any; loading: boolean; loggedIn: boolean; errorMessage: any; redirectUrl: string}}
+ */
 const initialState: AuthState = {
-  currentUser: { },
+  currentUser: null,
+  token: null,
   loading: false,
   loggedIn: false,
   errorMessage: null,
   redirectUrl: ''
 };
 
+
 export function authReducer(state = initialState, action: Action): AuthState {
+
   switch (action.type) {
 
     // login is required
     case AuthActions.LOGIN_REQUIRED: {
 
-      console.log(action.payload, 'login required reducer');
-
-      // crée une copie du state avec en clé "auth", le nouvel auth (qui est la payload recue depuis le authservice)
-
-      // login is loading
+      //TODO modify router to go to login page (router is in another Store)
       return Object.assign({}, state, {
         redirectUrl: action.payload
       });
@@ -39,11 +36,6 @@ export function authReducer(state = initialState, action: Action): AuthState {
     // login has started
     case AuthActions.LOGIN: {
 
-      console.log(action.payload, 'login reducer');
-
-      // crée une copie du state avec en clé "auth", le nouvel auth (qui est la payload recue depuis le authservice)
-
-      // login is loading
       return Object.assign({}, state, {
         loading: true,
         loggedIn: false,
@@ -54,11 +46,6 @@ export function authReducer(state = initialState, action: Action): AuthState {
     // login have failed
     case AuthActions.LOGIN_FAIL: {
 
-      console.log(action.payload, 'login fail reducer');
-
-      // crée une copie du state avec en clé "auth", le nouvel auth (qui est la payload recue depuis le authservice)
-
-      // login is loading
       return Object.assign({}, state, {
         loading: false,
         loggedIn: false,
@@ -69,17 +56,20 @@ export function authReducer(state = initialState, action: Action): AuthState {
     // login success
     case AuthActions.LOGIN_SUCCESS: {
 
-      console.log(action.payload, 'login success reducer');
-
-      // crée une copie du state avec en clé "auth", le nouvel auth (qui est la payload recue depuis le authservice)
-
-      // login is loading
       return Object.assign({}, state, {
-        currentUser: action.payload,
+        currentUser: action.payload.currentUser,
+        token: action.payload.token,
         loading: false,
         loggedIn: true,
         errorMessage: null
       });
+    }
+
+    // logout
+    case AuthActions.LOGOUT: {
+
+      //restore auth to initial state
+      return Object.assign({}, state, initialState);
     }
 
     default: {

@@ -4,8 +4,10 @@ import { storeFreeze } from 'ngrx-store-freeze';
 import { storeLogger } from 'ngrx-store-logger';
 import { routerReducer, RouterState } from '@ngrx/router-store';
 
-import { userReducer, UserState } from '../core/user/user.reducer';
-import { authReducer, AuthState } from '../core/auth/auth.reducer';
+import { userReducer, UserState } from './user/user.reducer';
+import { authReducer } from './auth/auth.reducer';
+import { AuthState } from './auth/auth.model';
+
 
 
 export interface AppState {

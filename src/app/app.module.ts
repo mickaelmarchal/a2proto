@@ -35,7 +35,9 @@ export class AppModule {
     private _store: Store<AppState>
   ) { }
 
-  // Hot Module Reloading: when reloading, restore app state using last State
+  /**
+   * Hot Module Reloading: when reloading, restore app state using last State
+   */
   hmrOnInit(store) {
     if (!store || !store.rootState) return;
 

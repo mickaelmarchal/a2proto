@@ -4,35 +4,18 @@ import {
   Router, Route, RouterStateSnapshot, ActivatedRouteSnapshot
 }                           from '@angular/router';
 
-import { AuthService }      from './auth.service';
-import {Store} from "@ngrx/store";
-import {AppState} from "./reducers";
-import {Observable, Subject} from "rxjs";
-import {AuthActions} from "./auth/auth.actions";
+import { AuthService }      from './auth/auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
-  auth: any;
-  auth$: Observable<any>;
-  destroyed$: Subject<any> = new Subject<any>();
-
   isLoggedIn: boolean = false;
 
-
   constructor(
-    private store: Store<AppState>,
-    private authActions: AuthActions,
+    private authService: AuthService,
     private router: Router
   ) {
-
-    //listen to changes in auth
-    this.auth$ = this.store.select(state => {
-      return state.auth
-    });
-    this.auth$.takeUntil(this.destroyed$)
-      .subscribe(auth => this.isLoggedIn = auth.loggedIn);
-
+    this.authService.onAuthChange().subscribe(auth => this.isLoggedIn = auth.loggedIn);
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
@@ -50,14 +33,14 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     return this.checkLogin(url);
   }
 
-  checkLogin(url: string): boolean {
+  private checkLogin(url: string): boolean {
 
     if (this.isLoggedIn) { return true; }
 
-    // Store the attempted URL for redirecting
-    this.store.dispatch(this.authActions.loginRequired(url));
+    // Store the attempted URL for redirecting, and redirect to login page
+    this.authService.triggerLogin(url);
 
-    // Navigate to the login page with extras
+    // TODO: this should go to reducer
     this.router.navigate(['/login']);
     return false;
   }

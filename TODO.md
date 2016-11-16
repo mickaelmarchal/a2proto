@@ -31,3 +31,10 @@
 - [OK] AOT compilation
 - [OK] use sass for login page-specific CSS
 
+
+
+Check de l'ip adresse coté serveur
+si on récupere une 401, envoyer directement sur le login avec un message d'erreur
+1. intercepter toutes les 401, faire un handler avec le composant Http
+2. en cas de 401, déclencher une action dans le AuthService, qui définit le message d'erreur
+3. ca redirige vers /login avec un message d'erreur

@@ -1,6 +1,7 @@
 import {Component, OnInit, OnDestroy}              from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
-import { AuthService }            from "../../core/auth.service";
+import { AuthService }            from "../../core/auth/auth.service";
+import { CurrentUser }            from "../../core/auth/auth.model";
 
 
 @Component({
@@ -9,11 +10,16 @@ import { AuthService }            from "../../core/auth.service";
 })
 export class AppLayoutComponent implements OnInit, OnDestroy {
 
+  currentUser?: CurrentUser;
+
   constructor(
-    public authService: AuthService,
     public router: Router,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private authService: AuthService
+  ) {
+
+    authService.onCurrentUserChange().subscribe((currentUser: CurrentUser) => { this.currentUser = currentUser });
+  }
 
   logout() {
     this.authService.logout();

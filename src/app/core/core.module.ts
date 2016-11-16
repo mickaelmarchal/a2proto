@@ -8,7 +8,7 @@ import { UserServiceConfig }  from './user.service';
 
 
 import { AuthGuard } from "./auth-guard.service";
-import { AuthService } from "./auth.service";
+import { AuthService } from "./auth/auth.service";
 import { DialogService }           from './dialog.service';
 
 @NgModule({

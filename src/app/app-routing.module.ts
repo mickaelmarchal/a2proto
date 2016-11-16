@@ -37,7 +37,7 @@ import { AppPage404Component } from "./app-general/page404/page404.component";
           canLoad: [AuthGuard]
         },
 
-        // imperatively-loaded feature modules - see https://github.com/angular/angular/issues/10958
+        // imperatively-loaded feature modules
         {
           path: 'heroes',
           loadChildren: './features/hero/hero.module#HeroModule?sync=true',
