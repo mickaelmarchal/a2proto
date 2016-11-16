@@ -1,7 +1,7 @@
 "use strict";
 const compression = require('compression')
 const express = require('express'),
-path = require('path');
+    path = require('path');
 
 const E2E_PORT = require('./constants').E2E_PORT;
 const HOST = require('./constants').HOST;

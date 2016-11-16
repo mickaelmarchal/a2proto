@@ -10,11 +10,11 @@
   <div class="content">
 
     <!-- BEGIN LOGIN FORM -->
-    <form class="login-form" *ngIf="! showForgotPassword && ! showLoading" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+    <form class="login-form" *ngIf="! showForgotPassword && ! auth.loading" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
       <h3 class="form-title font-green">Sign In</h3>
-      <div class="alert alert-danger" *ngIf="errorMessage">
+      <div class="alert alert-danger" *ngIf="auth.errorMessage">
         <span> The username or password is not correct. <a (click)="toggleForgotPassword()">Forgot Password?</a> </span>
-        {{ errorMessage }}
+        {{ auth.errorMessage }}
       </div>
       <div class="form-group">
         <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
@@ -43,7 +43,7 @@
     <!-- END LOGIN FORM -->
 
     <!-- BEGIN FORGOT PASSWORD FORM -->
-    <form class="forget-form" *ngIf="showForgotPassword && ! showLoading">
+    <form class="forget-form" *ngIf="showForgotPassword && ! auth.loading">
       <h3 class="font-green">Forgot Password ?</h3>
       <p> Enter your username or e-mail address below to reset your password. </p>
       <div class="form-group">
@@ -57,7 +57,7 @@
     <!-- END FORGOT PASSWORD FORM -->
 
     <!-- BEGIN LOADING -->
-    <div *ngIf="showLoading" class="loading">
+    <div *ngIf="auth.loading" class="loading">
       <h3 class="font-green">Loading</h3>
       <p class="loading-icon"><span class="icon-settings fa-spin"></span></p>
       <p> Please wait... </p>

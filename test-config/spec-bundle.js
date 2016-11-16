@@ -36,8 +36,8 @@ const testing = require('@angular/core/testing');
 const browser = require('@angular/platform-browser-dynamic/testing');
 
 testing.getTestBed().initTestEnvironment(
-  browser.BrowserDynamicTestingModule,
-  browser.platformBrowserDynamicTesting()
+    browser.BrowserDynamicTestingModule,
+    browser.platformBrowserDynamicTesting()
 );
 
 /*

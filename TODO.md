@@ -27,8 +27,7 @@
 
 ### Build ###
 
-- webpack building
-- build-time compilation
-- use sass for login page-specific CSS
-- SASS
+- [OK] webpack building
+- [OK] AOT compilation
+- [OK] use sass for login page-specific CSS
 

@@ -1,58 +1,68 @@
-import { NgModule }      from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule }    from '@angular/http';
+import { NgModule, ApplicationRef }  from '@angular/core';
+import { BrowserModule }             from '@angular/platform-browser';
+import { HttpModule }                from '@angular/http';
 
-import '../rxjs.imports';
+import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 
-// Routing Module
-import { AppRoutingModule }        from './app-routing.module';
+import { APP_DECLARATIONS } from "./app.declarations";
+import { APP_IMPORTS }      from "./app.imports";
+import { APP_PROVIDERS }    from "./app.providers";
 
-// feature modules
-import { CoreModule }              from './core/core.module';
-import { DashboardModule }         from './dashboard/dashboard.module';
-import { HeroModule }              from './hero/hero.module';
-import { DynamicFormModule }       from './dynamic-form/dynamic-form.module';
-import { ContactModule }           from './contact/contact.module';
-
-
-// components / service defined in current module
-import { AppComponent }            from './app.component';
-import { AppLayoutComponent }         from "./app-general/layout/layout.component";
-import { AppLayoutSidemenuComponent } from "./app-general/layout-sidemenu/layout-sidemenu.component";
-import { AppLoginComponent }  from './app-general/login/login.component';
-import { AppPage404Component }  from './app-general/page404/page404.component';
-
-//import { LoginComponent } from './login.component';
- import { DialogService }           from './dialog.service';
-import {SharedModule} from "./shared/shared.module";
+import { AppComponent }     from './app.component';
+import { Store } from "@ngrx/store";
+import { AppState } from "./core/reducers";
 
 
 @NgModule({
-  imports: [          /** things that we need to build this module */
-    SharedModule,
+  declarations: [
+    AppComponent,
+    APP_DECLARATIONS
+  ],
+  imports: [
+    APP_IMPORTS,
     BrowserModule,
     HttpModule,
-    CoreModule.forRoot({userName: 'Miss Marple'}),
-
-    AppRoutingModule,
-
-//    LoginRoutingModule,
-    DashboardModule,
-    HeroModule,
-    DynamicFormModule,
-    ContactModule
   ],
-  declarations: [     /** things that are created in this module */
-    AppComponent,
-    AppLoginComponent,
-    AppLayoutComponent,
-    AppLayoutSidemenuComponent,
-    AppPage404Component
-//    LoginComponent
-],
+  bootstrap: [AppComponent],
   providers: [
-    DialogService
-  ],
-  bootstrap: [AppComponent]
+    APP_PROVIDERS
+  ]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(
+    public appRef: ApplicationRef,
+    private _store: Store<AppState>
+  ) { }
+
+  // Hot Module Reloading: when reloading, restore app state using last State
+  hmrOnInit(store) {
+    if (!store || !store.rootState) return;
+
+    // restore state by dispatch a SET_ROOT_STATE action
+    if (store.rootState) {
+      this._store.dispatch({
+        type: 'SET_ROOT_STATE',
+        payload: store.rootState
+      });
+    }
+
+    if ('restoreInputValues' in store) { store.restoreInputValues(); }
+    this.appRef.tick();
+    Object.keys(store).forEach(prop => delete store[prop]);
+  }
+
+  hmrOnDestroy(store) {
+    const cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
+    this._store.take(1).subscribe(s => store.rootState = s);
+    store.disposeOldHosts = createNewHosts(cmpLocation);
+    store.restoreInputValues = createInputTransfer();
+    removeNgStyles();
+  }
+
+  hmrAfterDestroy(store) {
+    store.disposeOldHosts();
+    delete store.disposeOldHosts;
+  }
+}
+

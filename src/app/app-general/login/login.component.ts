@@ -2,6 +2,11 @@ import {Component, HostBinding, style, state, animate, transition, trigger, OnIn
 import { Router }      from "@angular/router";
 import { AuthService } from '../../core/auth.service';
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
+import {Store} from "@ngrx/store";
+import {AuthActions} from "../../core/auth/auth.actions";
+import {AppState} from "../../core/reducers";
+import {AuthCredentials} from "../../core/auth/auth.model";
+import {Observable, Subject} from "rxjs";
 
 
 @Component({
@@ -38,19 +43,24 @@ export class AppLoginComponent implements OnInit {
   }
 
   showForgotPassword: boolean = false;
-  showLoading: boolean = false;
-  errorMessage: any = null;
 
   loginForm: FormGroup;
   forgotPasswordForm: FormGroup;
 
+  auth: any;
+  auth$: Observable<any>;
+  destroyed$: Subject<any> = new Subject<any>();
 
   constructor(
     public authService: AuthService,
     public router: Router,
-    public fb: FormBuilder
-  ) {
+    public fb: FormBuilder,
 
+    private store: Store<AppState>,
+    private authActions: AuthActions
+) {
+
+    //init forms
     this.loginForm = fb.group({
       'username': ['', Validators.required],
       'password': ['', Validators.required],
@@ -60,27 +70,45 @@ export class AppLoginComponent implements OnInit {
     this.forgotPasswordForm = fb.group({
       'username': ['', Validators.required]
     });
+
+    //listen to changes in auth
+    this.auth$ = this.store.select(state => {
+      console.log(state, 'STATE');
+      return state.auth
+    });
+    this.auth$.takeUntil(this.destroyed$)
+      .subscribe(auth => this.authChanged(auth));
+
   }
 
   ngOnInit() {
     this.showForgotPassword = false;
-    this.showLoading = false;
-    this.errorMessage = null;
   }
 
   toggleForgotPassword() {
     this.showForgotPassword = ! this.showForgotPassword;
-    this.errorMessage = null;
   }
 
-  toggleLoading() {
-    this.showLoading = ! this.showLoading;
-    this.errorMessage = null;
+
+  login(credentials: AuthCredentials) {
+    this.store.dispatch(this.authActions.login(credentials));
   }
 
-  login(formValues: any) {
+  authChanged(auth) {
+    console.log(auth, 'AUTH CHANGED');
 
-    this.toggleLoading();
+    this.auth = auth;
+
+    console.log('loggedIn='+auth.loggedIn);
+    if(auth.loggedIn) {
+      let redirect = auth.redirectUrl ? auth.redirectUrl : '';
+      console.log('redirUrl='+auth.redirectUrl);
+
+      this.router.navigate([redirect]);
+    }
+  }
+
+/*
     this.authService.login(formValues).subscribe(
 
       // authentication success
@@ -108,37 +136,8 @@ export class AppLoginComponent implements OnInit {
 
     return false;
   }
+*/
 
-  forgotPassword(formValues: any) {
-/*
-    this.toggleLoading();
-    this.authService.forgotPassword(formValues).subscribe(
 
-      // request success
-      (res) => {
-
-        console.log(res, 'SUCCESS');
-
-        this.toggleLoading();
-
-        if (this.authService.isLoggedIn) {
-
-          // Get the redirect URL from our auth service
-          // If no redirect has been set, use the default
-          let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '';
-
-          // Redirect the user
-          this.router.navigate([redirect]);
-        } else {
-
-        }
-      },
-
-      // authentication failure
-      error => {
-        console.log(error, 'ERROR');
-        this.toggleLoading();
-        this.errorMessage = error;
-      }*/
-  }
+  forgotPassword(formValues: any) { }
 }

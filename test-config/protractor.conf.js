@@ -2,10 +2,11 @@ require('ts-node/register');
 const ports = require('../constants')
 const helpers = require('../helpers');
 
-exports.config = {
-  baseUrl: `http://localhost:${ports.E2E_PORT}/`,
+let port;
+helpers.hasProcessFlag('universal') ? port = ports.UNIVERSAL_PORT : port = ports.E2E_PORT;
 
-  // use `npm run e2e`
+exports.config = {
+  baseUrl: `http://localhost:${port}/`,
   specs: [
     helpers.root('e2e/**/**.e2e.ts'),
     helpers.root('e2e/**/*.e2e.ts'),
@@ -44,5 +45,5 @@ exports.config = {
    * useAllAngular2AppRoots: tells Protractor to wait for any angular2 apps on the page instead of just the one matching
    * `rootEl`
    */
-   useAllAngular2AppRoots: true
+  useAllAngular2AppRoots: true
 };

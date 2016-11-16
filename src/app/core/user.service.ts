@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {AuthHttp} from "angular2-jwt";
+import { AuthHttp } from "angular2-jwt";
 import 'rxjs/add/operator/toPromise';
 
-import { User } from '../users/user';
+import { User } from '../features/users/user';
 import {Response} from "@angular/http";
 
 @Injectable()

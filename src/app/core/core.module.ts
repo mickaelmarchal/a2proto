@@ -7,11 +7,9 @@ import { UserService }        from './user.service';
 import { UserServiceConfig }  from './user.service';
 
 
-import {provideAuth, JwtHelper} from 'angular2-jwt';
-
 import { AuthGuard } from "./auth-guard.service";
 import { AuthService } from "./auth.service";
-
+import { DialogService }           from './dialog.service';
 
 @NgModule({
   imports: [
@@ -26,13 +24,7 @@ import { AuthService } from "./auth.service";
 
     HeroService,
     UserService,
-
-/*    provideAuth({
-      //tokenGetter: () => localStorage.getItem(tokenName),
-      noJwtError: false
-    }),
-*/
-    JwtHelper
+    DialogService,
   ],
   exports: [
     TitleComponent

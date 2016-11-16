@@ -141,61 +141,64 @@ module.exports = {
           /node_modules/
         ]
       },
-      ...MY_TEST_RULES
-    ]
-  },
+        ...MY_TEST_RULES
+]
+},
 
-  /**
-   * Add additional plugins to the compiler.
-   *
-   * See: http://webpack.github.io/docs/configuration.html#plugins
-   */
-  plugins: [
-    new webpack.ContextReplacementPlugin(
+/**
+ * Add additional plugins to the compiler.
+ *
+ * See: http://webpack.github.io/docs/configuration.html#plugins
+ */
+plugins: [
+  new webpack.ContextReplacementPlugin(
       /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
       root('./src')
-    ),
-    /**
-     * Plugin: DefinePlugin
-     * Description: Define free variables.
-     * Useful for having development builds with debug logging or adding global constants.
-     *
-     * Environment helpers
-     *
-     * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
-     */
-    // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
-    new DefinePlugin({
-      AOT: false,
-      ENV: JSON.stringify('test'),
-      PORT: 3000,
-      HOST: JSON.stringify('localhost')
-    }),
-    new NamedModulesPlugin(),
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        tslint: {
-          emitErrors: false,
-          failOnHint: false,
-          resourcePath: root('./src')
-        }
-      }
-    }),
-    ...MY_TEST_PLUGINS
-  ],
-
+  ),
   /**
-   * Include polyfills or mocks for various node stuff
-   * Description: Node configuration
+   * Plugin: DefinePlugin
+   * Description: Define free variables.
+   * Useful for having development builds with debug logging or adding global constants.
    *
-   * See: https://webpack.github.io/docs/configuration.html#node
+   * Environment helpers
+   *
+   * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
    */
-  node: {
-    global: true,
-    process: false,
-    crypto: false,
-    module: false,
-    clearImmediate: false,
-    setImmediate: false
-  }
+  // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
+  new DefinePlugin({
+    AOT: false,
+    ENV: JSON.stringify('test'),
+    HMR: false,
+    PORT: 3000,
+    HOST: JSON.stringify('localhost'),
+    STORE_DEV_TOOLS: JSON.stringify(STORE_DEV_TOOLS),
+    UNIVERSAL: false
+  }),
+  new NamedModulesPlugin(),
+  new webpack.LoaderOptionsPlugin({
+    options: {
+      tslint: {
+        emitErrors: false,
+        failOnHint: false,
+        resourcePath: root('./src')
+      }
+    }
+  }),
+    ...MY_TEST_PLUGINS
+],
+
+/**
+ * Include polyfills or mocks for various node stuff
+ * Description: Node configuration
+ *
+ * See: https://webpack.github.io/docs/configuration.html#node
+ */
+node: {
+  global: true,
+      process: false,
+      crypto: false,
+      module: false,
+      clearImmediate: false,
+      setImmediate: false
+}
 };
