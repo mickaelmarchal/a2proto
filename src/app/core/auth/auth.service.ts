@@ -43,6 +43,8 @@ export class AuthRequestService extends RequestBase {
 
         //TODO not at the right place !
         sessionStorage.setItem('id_token', data.token);
+        localStorage.setItem('id_token', data.token);
+
 
         // return payload to use by action
         let res: CurrentUser = data.data;
@@ -98,6 +100,7 @@ export class AuthService {
    */
   public onAuthChange(): Observable<AuthState> {
 
+    //TODO this should go to actions
     //listen to changes in auth
     return this.store.select(state => {
       return state.auth
@@ -109,6 +112,9 @@ export class AuthService {
    * @param credentials
    */
   public login(credentials: AuthCredentials): void {
+    //TODO call the action directly, not necessary
+    //this goes direclty to redux, but this should
+
     this.store.dispatch(this.authActions.login(credentials));
   }
 

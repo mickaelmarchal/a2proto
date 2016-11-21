@@ -16,7 +16,7 @@ export const APP_PROVIDERS = [
 
   //TODO move that to core
   provideAuth({
-    tokenGetter: () => sessionStorage.getItem('id_token'),
+    //tokenGetter: () => sessionStorage.getItem('id_token'),
     noJwtError: false
   })
 ];

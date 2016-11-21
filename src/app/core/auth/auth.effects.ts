@@ -40,6 +40,10 @@ export class AuthEffects {
       .catch((err) => Observable.of(
         this.authActions.loginFail(err)
       ))
+
+      //TODO can dispatch another action, to do actions on other stores
+
+      //NOTE: le store store que les users visibles actuellement sur la page, pas les 5000 users de la DB
     );
 
 }
